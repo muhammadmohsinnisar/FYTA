@@ -1,8 +1,15 @@
 <resources>
-    <string name="app_name">FYTATest</string>
+    <string name="app_name">FYTA</string>
     <string name="API_KEY">2b10LPPlQzCC2m7EXa2lAV380</string>
     <string name="result">Result</string>
     <string name="URL">"https://example.identification.service?api-key=2b10LPPlQzCC2m7EXa2lAV380"</string>
     <string name="results">Results</string>
+    <string name="gallery_button">Gallery Button</string>
+    <string name="camera_button">Camera button</string>
+    <string name="plant_placeholder">Plant placeholder</string>
+    <string name="fyta">FYTA</string>
+    <string name="send_image">Send Image</string>
+    <string name="select_image">Select Image</string>
+
 
 </resources>
