@@ -1,5 +1,6 @@
-package com.example.fytatest
+package com.example.fytatest.ui
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -13,16 +14,15 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.fytatest.Constants
+import com.example.fytatest.R
 import com.example.fytatest.databinding.ActivityCameraBinding
-import com.example.fytatest.databinding.ActivityMainBinding
 import java.io.File
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import kotlin.math.log
 
 class CameraActivity : AppCompatActivity(){
 
@@ -44,16 +44,26 @@ class CameraActivity : AppCompatActivity(){
             Toast.makeText(this, "Camera Allowed", Toast.LENGTH_SHORT).show()
             startCamera()
         } else {
-            ActivityCompat.requestPermissions(this, Constants.REQUIRED_PERMISSIONS, Constants.REQUEST_CODE_PERMISSION)
+            ActivityCompat.requestPermissions(this,
+                Constants.REQUIRED_PERMISSIONS,
+                Constants.REQUEST_CODE_PERMISSION
+            )
         }
 
         binding.btnClick.setOnClickListener {
             captureImage()
         }
+
+        binding.btnCamgallery.setOnClickListener{
+            val intent = Intent(this, SelectAndSendActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getOutputDirectory(): File{
-        val mediaDir = externalMediaDirs.firstOrNull()?.let { mFile->File(mFile,resources.getString(R.string.app_name)).apply {
+        val mediaDir = externalMediaDirs.firstOrNull()?.let { mFile->File(mFile,resources.getString(
+            R.string.app_name
+        )).apply {
             mkdirs()
         }}
     return if (mediaDir != null && mediaDir.exists())

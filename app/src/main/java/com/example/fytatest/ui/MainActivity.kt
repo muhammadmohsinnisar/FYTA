@@ -1,14 +1,13 @@
-package com.example.fytatest
+package com.example.fytatest.ui
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import com.example.fytatest.*
 import com.example.fytatest.databinding.ActivityMainBinding
-import java.net.URI
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,24 +49,4 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, GalleryActivity.IMAGE_PICK_CODE)
     }
 
-    private fun uploadImage() {
-        imageData?: return
-        val request = object : VolleyFileUploadRequest(
-            Method.POST,
-            postURL,
-            Response.Listener {
-                println("response is: $it")
-            },
-            Response.ErrorListener {
-                println("error is: $it")
-            }
-        ) {
-            override fun getByteData(): MutableMap<String, FileDataPart> {
-                var params = HashMap<String, FileDataPart>()
-                params["imageFile"] = FileDataPart("image", imageData!!, "jpeg")
-                return params
-            }
-        }
-        Volley.newRequestQueue(this).add(request)
-    }
 }

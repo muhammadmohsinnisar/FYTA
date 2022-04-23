@@ -1,38 +1,38 @@
-package com.example.fytatest
+package com.example.fytatest.ui
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.android.volley.Response
-import com.android.volley.toolbox.Volley
-import com.example.fytatest.databinding.ActivityMenuBinding
+import com.example.fytatest.R
+import com.example.fytatest.UploadStream
 import com.example.fytatest.databinding.ActivityPictureselectBinding
-import com.example.fytatest.databinding.ActivitySplashBinding
 import com.example.fytatest.service.APIService
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import java.io.IOException
-
 
 
 class SelectAndSendActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPictureselectBinding
     private lateinit var imageView: ImageView
-    private lateinit var imageButton: Button
-    private lateinit var sendButton: Button
+    private lateinit var imageButton: ImageButton
+    private lateinit var sendButton: ImageButton
     private var imageData: ByteArray? = null
     private val postURL: String = "https://example.identification.service?api-key=2b10LPPlQzCC2m7EXa2lAV380"
+    private val API_URL: String = "https://my-api.plantnet.org/v2/identify/all?api-key="
+    private val API_PRIVATE_KEY: String = "2b10LPPlQzCC2m7EXa2lAV380" // APIKEY from website
+
+
 
     companion object {
-        private const val IMAGE_PICK_CODE = 999
+        private const val IMAGE_PICK_CODE = 100
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,7 @@ class SelectAndSendActivity : AppCompatActivity() {
         sendButton = findViewById(R.id.sendButton)
         sendButton.setOnClickListener {
 
-            uploadImage()
+           // uploadImage()
         }
     }
 
@@ -57,6 +57,7 @@ class SelectAndSendActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
+
     }
 
     private fun uploadImage(uri: Uri){
@@ -73,7 +74,7 @@ class SelectAndSendActivity : AppCompatActivity() {
             )
             try {
 
-                APIService.uploadFile(filePart)
+               // APIService.uploadFile(filePart)
             }
             catch(e: Exception) { // if something happens to the network
              //   Toast.makemakeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
