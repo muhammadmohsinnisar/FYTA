@@ -4,35 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="MenuActivity">
+    tools:context=".ui.MenuActivity"
+    android:theme="@style/CardView.Light"
+    android:orientation="vertical"
+    android:background="@mipmap/backdrop">
 
-    <ImageView
-        android:id="@+id/btn_gallery2"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="312dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:srcCompat="@drawable/ic_launcher_background" />
-
-    <ImageView
-        android:id="@+id/btn_camera2"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="312dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
-
-    <ImageView
-        android:id="@+id/imageView6"
+    <ImageButton
+        android:id="@+id/btn_gallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/btn_camera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
+        android:background="@mipmap/gallery"
+        android:contentDescription="@string/gallery_button" />
+
+    <ImageButton
+        android:id="@+id/btn_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
+        android:background="@mipmap/camera"
+        android:contentDescription="@string/camera_button" />
+
+    <ImageView
+        android:id="@+id/im_happyPlant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btn_gallery"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/splash" />
+        app:layout_constraintVertical_bias="0.31"
+        app:srcCompat="@mipmap/plant"
+        android:contentDescription="@string/plant_placeholder" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/fyta"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/im_happyPlant"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/im_happyPlant"
+        app:layout_constraintTop_toBottomOf="@+id/im_happyPlant" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
