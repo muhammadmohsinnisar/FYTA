@@ -59,28 +59,7 @@ class SelectAndSendActivity : AppCompatActivity() {
         startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
-   /* private fun uploadImage() {
-        imageData?: return
-        val request = object : VolleyFileUploadRequest(
-            Method.POST,
-            postURL,
-            Response.Listener {
-                println("response is: $it")
-            },
-            Response.ErrorListener {
-                println("error is: $it")
-            }
-        ) {
-            override fun getByteData(): MutableMap<String, FileDataPart> {
-                var params = HashMap<String, FileDataPart>()
-                params["imageFile"] = FileDataPart("image", imageData!!, "jpeg")
-                return params
-            }
-        }
-        Volley.newRequestQueue(this).add(request)
-    }*/
-
-    private suspend fun uploadImage(uri: Uri){
+    private fun uploadImage(uri: Uri){
         lifecycleScope.launch {
             val stream = contentResolver.openInputStream(uri) ?: return@launch
             val request = UploadStream("image/*", stream, onUploadProgress = {
@@ -93,14 +72,14 @@ class SelectAndSendActivity : AppCompatActivity() {
                 request
             )
             try {
-                val service: APIService
-                service.uploadFile(filePart)
+
+                APIService.uploadFile(filePart)
             }
             catch(e: Exception) { // if something happens to the network
              //   Toast.makemakeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
                 return@launch
             }
-            Log.d("MyActivity", "On finish upload file")
+            Log.d("SelectAndSendActivity", "On finish upload file")
        }
     }
 
