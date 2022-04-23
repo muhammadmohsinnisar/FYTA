@@ -9,6 +9,6 @@ interface APIService {
 
     @Multipart
     @POST("service?api-key=2b10LPPlQzCC2m7EXa2lAV380")
-    suspend fun uploadFile(@Part body: MultipartBody.Part)
+    fun uploadFile(@Part body: MultipartBody.Part)
 
 }
